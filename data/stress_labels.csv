@@ -1,0 +1,5 @@
+label_id,customer_id,month,stress_level
+1,1,2025-01-01,LOW
+2,2,2025-02-01,HIGH
+3,2,2025-03-01,HIGH
+4,1,2025-02-01,HIGH
