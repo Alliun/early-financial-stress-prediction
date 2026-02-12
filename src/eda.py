@@ -38,3 +38,37 @@ print(data[['customer_id', 'month',
             'expense_to_income',
             'savings_to_income',
             'stress_level']])
+
+# Convert stress labels to numbers
+mapping = {'LOW': 0, 'MEDIUM': 1, 'HIGH': 2}
+data['stress_num'] = data['stress_level'].map(mapping)
+
+print("\nConverted Labels:")
+print(data[['stress_level', 'stress_num']])
+
+# Traing the model with Decision tree classifier
+features = data[['emi_to_income', 'expense_to_income', 'savings_to_income']]
+target = data['stress_num']
+from sklearn.tree import DecisionTreeClassifier
+
+model = DecisionTreeClassifier()
+model.fit(features, target)
+
+print("\nModel trained successfully!")
+
+# Test prediction on new sample
+sample = [[0.45, 0.88, 0.40]]  
+# format = [emi_ratio, expense_ratio, savings_ratio]
+
+prediction = model.predict(sample)
+
+# convert back to text label
+reverse_map = {0:'LOW', 1:'MEDIUM', 2:'HIGH'}
+
+print("\nPrediction result (numeric):", prediction[0])
+print("Predicted Stress Level:", reverse_map[prediction[0]])
+
+
+
+
+
