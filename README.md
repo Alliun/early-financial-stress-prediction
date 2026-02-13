@@ -78,3 +78,25 @@ These models are trained to classify financial stress levels based on engineered
 ---
 
 ## 📁 Project Structure
+
+# Early Financial Stress Prediction System
+
+A machine learning system that predicts early financial stress using income, expense, EMI, and savings behavior.
+
+## Features
+- MySQL database backend
+- Feature engineering (financial ratios)
+- Decision Tree classifier
+- Random Forest comparison
+- Stress level prediction
+
+## Tech Stack
+- Python
+- Pandas
+- Scikit-learn
+- MySQL
+
+## Future Improvements
+- Real-time API
+- Dashboard
+- Larger dataset
