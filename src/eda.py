@@ -1,4 +1,4 @@
-import pandas as pd
+'''import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -66,7 +66,44 @@ prediction = model.predict(sample)
 reverse_map = {0:'LOW', 1:'MEDIUM', 2:'HIGH'}
 
 print("\nPrediction result (numeric):", prediction[0])
-print("Predicted Stress Level:", reverse_map[prediction[0]])
+print("Predicted Stress Level:", reverse_map[prediction[0]])'''
+
+import pandas as pd
+
+data = pd.read_csv(r"data/aggregated_financials.csv")
+
+# Create behavioral ratios
+data["emi_ratio"] = data["total_emi"] / data["total_income"]
+data["expense_ratio"] = data["total_expense"] / data["total_income"]
+data["net_savings_ratio"] = (
+    (data["total_income"] - data["total_expense"]) / data["total_income"]
+)
+
+print(data)
+def compute_stress(node_index):
+    neighbors = G[node_index]
+    weighted_score = 0
+    total_weight = 0
+
+    for neighbor in neighbors:
+        weight = G[node_index][neighbor]["weight"]
+        stress_score = (
+            features[neighbor][0] * 0.5 +   # emi ratio weight
+            features[neighbor][1] * 0.3 -   # expense ratio weight
+            features[neighbor][2] * 0.2     # savings ratio reduces stress
+        )
+        weighted_score += weight * stress_score
+        total_weight += weight
+
+    final_score = weighted_score / total_weight
+
+    if final_score > 0.6:
+        return "HIGH"
+    elif final_score > 0.3:
+        return "MEDIUM"
+    else:
+        return "LOW"
+
 
 
 

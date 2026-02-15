@@ -1,0 +1,3 @@
+customer_id,pan_number,month,total_income,total_expense,total_emi
+1,ABCDE1234F,2025-03,50000.00,16000.00,10000.00
+2,PQRSX5678Z,2025-03,35000.00,8000.00,0.00
