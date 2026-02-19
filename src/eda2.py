@@ -57,3 +57,11 @@ for i in range(len(features)):
         weight = 1 / (1 + dist_matrix[i][j])
         G.add_edge(i, j, weight=weight)
 
+data["graph_stress"] = [
+    compute_stress(i) for i in range(len(data))
+]
+
+print("\nGraph-Based Stress Prediction:")
+print(data[["customer_id", "month", "graph_stress"]])
+
+
